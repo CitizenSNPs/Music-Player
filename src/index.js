@@ -1,29 +1,31 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import mp3 from "./Relax.mp3";
+import songs from "./MusicList.js";
+import songfile1 from "./Relax.mp3";
+import songfile2 from "./Reckoner.mp3";
 
-const songs = {name: "Relax",
-        artist: "Rezz",
-        src: {mp3}};
+window.p = 0;
+const audio = document.querySelector("audio");
 
 class PlayButton extends React.Component{
     constructor(props){
       super(props);
 
-      this.songs = {name: "Relax",
-              artist: "Rezz",
-              src: ({mp3})};
+      var currentIndex = 0;
 
-      this.state = {playing:false};
+      this.songs = [songfile1, songfile2];
+
+      this.state = {playing:false, songIndex: 0};
 
       this.playSong = this.playSong.bind(this);
-      this.audio = new Audio({mp3});
+
     };
 
 
     render(){
-      return (<div><audio src={mp3} type="audio.mpeg" id="song" data-key="1" /><button onClick={this.playSong}>Play</button></div>)
+      var j = 0;
+      return (<div><audio src={this.songs[window.p]} type="audio.mpeg" id="song" data-key="1" /><button onClick={this.playSong}>Play</button></div>)
     };
 
     playSong(){
@@ -36,10 +38,18 @@ class PlayButton extends React.Component{
         this.setState({playing:false});
       };
 
+      console.log(window.p);
+
 
       };
 
+      getcurrentIndex(){
+        return this.currentIndex;
+      };
 
+      setcurrentIndex(){
+
+      }
     };
 
 class ForwardButton extends React.Component{
@@ -47,6 +57,7 @@ class ForwardButton extends React.Component{
     super(props);
 
     this.changeSong = this.changeSong.bind(this);
+    this.songs = [songfile1, songfile2];
 
   };
 
@@ -55,14 +66,15 @@ class ForwardButton extends React.Component{
   };
 
   changeSong(){
-    var j = 1;
-    j++;
-    document.querySelector("audio[data-key==j]").play();
+    window.p = window.p+1;
+    console.log(window.p);
+    const audio = document.querySelector("audio");
+
   };
 };
 
 const App = () => {
-  return (<div><PlayButton /></div>)
+  return (<div><PlayButton /><ForwardButton /></div>)
 };
 
 ReactDOM.render(<App />, document.querySelector("body"));
