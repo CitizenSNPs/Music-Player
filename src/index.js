@@ -4,77 +4,74 @@ import "./index.css";
 import songs from "./MusicList.js";
 import songfile1 from "./Relax.mp3";
 import songfile2 from "./Reckoner.mp3";
+import songfile3 from "./Imaginary Parties.mp3"
 
-window.p = 0;
-const audio = document.querySelector("audio");
+const songlist = [songfile1, songfile2, songfile3];
+var songIndex = 0;
 
-class PlayButton extends React.Component{
-    constructor(props){
-      super(props);
-
-      var currentIndex = 0;
-
-      this.songs = [songfile1, songfile2];
-
-      this.state = {playing:false, songIndex: 0};
-
-      this.playSong = this.playSong.bind(this);
-
-    };
-
-
-    render(){
-      var j = 0;
-      return (<div><audio src={this.songs[window.p]} type="audio.mpeg" id="song" data-key="1" /><button onClick={this.playSong}>Play</button></div>)
-    };
-
-    playSong(){
-      const audio = document.querySelector("audio");
-      if (!(this.state.playing)){
-        audio.play();
-        this.setState({playing:true});
-      } else {
-        audio.pause();
-        this.setState({playing:false});
-      };
-
-      console.log(window.p);
-
-
-      };
-
-      getcurrentIndex(){
-        return this.currentIndex;
-      };
-
-      setcurrentIndex(){
-
-      }
-    };
-
-class ForwardButton extends React.Component{
+class Controls extends React.Component{
   constructor(props){
     super(props);
 
-    this.changeSong = this.changeSong.bind(this);
     this.songs = [songfile1, songfile2];
+    this.props = [{song:songfile1, playing:false, image: ""},
+                  {song:songfile2, playing:false, image:""}];
+
+    this.state = {song:songlist[songIndex], playing:false, image:""};
+    this.audio = document.querySelector("audio");
+
+
+
+    this.playSong = this.playSong.bind(this);
+    this.changeSong = this.changeSong.bind(this);
 
   };
 
   render(){
-    return(<div><button onClick={this.changeSong}>Forward</button></div>)
+    return(<div>
+          <audio type="audio.mpeg" src= {this.state.song}/>
+          <button>Back</button>
+          <button onClick={this.playSong}>Play</button>
+          <button onClick={this.changeSong}>Forward</button>
+          </div>);
   };
 
-  changeSong(){
-    window.p = window.p+1;
-    console.log(window.p);
-    const audio = document.querySelector("audio");
+  playSong(){
+    this.audio = document.querySelector("audio");
+    if (!(this.state.playing)){
+      this.audio.play();
+      this.setState({playing:true});
+    } else {
+      this.audio.pause();
+      this.setState({playing:false});
+      };
 
-  };
+
+
+    };
+
+    changeSong(){
+      console.log(songIndex);
+      songIndex +=1;
+      this.setState({
+        song: songlist[songIndex], playing:false});
+
+      this.audio.play();
+      console.log(this.state.playing);
+        console.log(songIndex);
+        console.log(this.state.song);
+        console.log(songlist[songIndex]);
+        console.log(this.audio);
+
+      };
+
+
+
+
 };
 
 const App = () => {
-  return (<div><PlayButton /><ForwardButton /></div>)
+  return (<div><Controls /></div>)
 };
 
 ReactDOM.render(<App />, document.querySelector("body"));
