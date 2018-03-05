@@ -26,6 +26,7 @@ class Controls extends React.Component{
 
     this.playSong = this.playSong.bind(this);
     this.changeSong = this.changeSong.bind(this);
+		this.songBack = this.songBack.bind(this);
 
   };
 
@@ -36,8 +37,8 @@ class Controls extends React.Component{
 	  <h2 id="songTitle">{this.state.trackname}</h2>
 	  <h3 id="artist">{this.state.artist}</h3>
 	  </div>
-          <audio type="audio.mpeg" src= {this.state.song}/>
-          <button>Back</button>
+          <audio type="audio.mpeg" src= {this.state.song} ref="audio"/>
+          <button onClick={this.songBack}>Back</button>
           <button onClick={this.playSong}>Play</button>
           <button onClick={this.changeSong}>Forward</button>
           </div>);
@@ -55,21 +56,29 @@ class Controls extends React.Component{
     };
 
     changeSong(){
+			this.audio=document.querySelector("audio");
       console.log(songIndex);
       songIndex +=1;
       this.setState({
-        song: songinfo[songIndex].src, playing:false, artist: songinfo[songIndex].artist, trackname:songinfo[songIndex].trackname});
-
-      this.audio.play();
-      console.log(this.state.playing);
-        console.log(songIndex);
-        console.log(this.state.song);
-        console.log(songinfo[songIndex]);
-        console.log(this.audio);
-        console.log(Rezz);
-
+        song: songinfo[songIndex].src}, function(){
+					this.refs.audio.pause();
+					this.refs.audio.load();
+					this.refs.audio.play();
+				});
       };
 
+		songBack(){
+			this.audio=document.querySelector("audio");
+      console.log(songIndex);
+      songIndex -=1;
+      this.setState({
+        song: songinfo[songIndex].src}, function(){
+					this.refs.audio.pause();
+					this.refs.audio.load();
+					this.refs.audio.play();
+		});
+
+	};
 };
 
 const App = () => {
