@@ -9,3 +9,20 @@
   top: 12.5%;
   border: none;
 }
+
+img {
+ -webkit-filter: blur(5px);
+ -moz-filter: blur(5px);
+ -o-filter: blur(5px);
+ -ms-filter: blur(5px);
+ filter: blur();
+ width: 500px;
+ height: 500px;
+ border: solid black 10px;
+};
+
+.imageborder{
+  border: solid red 10px;
+  height:800px;
+  width:800px;
+}
