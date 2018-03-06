@@ -6,8 +6,8 @@ import songfile2 from "./Reckoner.mp3";
 import songfile3 from "./Imaginary Parties.mp3"
 import Rezz from "./Rezz.jpg";
 
-const songinfo = [{trackname:"Relax", artist:"Rezz", image:"",src:songfile1},
-		{trackname:"Reckoner", artist:"Radiohead", image:"",src:songfile2},
+const songinfo = [{trackname:"Relax", artist:"Rezz", image:"./Rezz.jpg",src:songfile1},
+		{trackname:"Reckoner", artist:"Radiohead", image:"./Radiohead.jpg",src:songfile2},
 		{trackname:"Unknown", artist:"Unknown", image:"",src:songfile3}];
 var songIndex = 0;
 
@@ -19,7 +19,9 @@ class Controls extends React.Component{
     this.props = [{song:songfile1, playing:false, image: ""},
                   {song:songfile2, playing:false, image:""}];
 
-    this.state = {trackname: songinfo[songIndex].trackname, artist: songinfo[songIndex].artist, song:songinfo[songIndex].src, playing:false, image:"./Rezz.jpg"};
+    this.state = {trackname: songinfo[songIndex].trackname, artist: songinfo[songIndex].artist,
+		song:songinfo[songIndex].src, playing:false, image:"./Rezz.jpg"};
+
     this.audio = document.querySelector("audio");
 
 
@@ -60,7 +62,7 @@ class Controls extends React.Component{
       console.log(songIndex);
       songIndex +=1;
       this.setState({
-        song: songinfo[songIndex].src}, function(){
+        song: songinfo[songIndex].src, image: songinfo[songIndex].image, trackname: songinfo[songIndex].trackname, artist: songinfo[songIndex].artist}, function(){
 					this.refs.audio.pause();
 					this.refs.audio.load();
 					this.refs.audio.play();
@@ -72,7 +74,7 @@ class Controls extends React.Component{
       console.log(songIndex);
       songIndex -=1;
       this.setState({
-        song: songinfo[songIndex].src}, function(){
+        song: songinfo[songIndex].src, image: songinfo[songIndex].image, trackname: songinfo[songIndex].trackname, artist: songinfo[songIndex].artist}, function(){
 					this.refs.audio.pause();
 					this.refs.audio.load();
 					this.refs.audio.play();
