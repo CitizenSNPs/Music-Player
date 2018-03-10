@@ -6,9 +6,9 @@ import songfile2 from "./Reckoner.mp3";
 import songfile3 from "./Imaginary Parties.mp3"
 import Rezz from "./Rezz.jpg";
 
-const songinfo = [{trackname:"Relax", artist:"Rezz", image:"./Rezz.jpg",src:songfile1},
-		{trackname:"Reckoner", artist:"Radiohead", image:"./Radiohead.jpg",src:songfile2},
-		{trackname:"Unknown", artist:"Unknown", image:"",src:songfile3}];
+const songinfo = [{trackname:"Relax", artist:"Rezz", image:"http://www.youredm.com/wp-content/uploads/2017/06/rezz-face-first-rukes-1024x683.jpg",src:songfile1},
+		{trackname:"Reckoner", artist:"Radiohead", image:"http://diymag.com/media/img/General/Hall-of-Fame/_1500x1000_crop_center-center_75/tumblr_m8yak1u0a41qj3af5o1_1280.jpg",src:songfile2},
+		{trackname:"Unknown", artist:"Unknown", image:"https://ih0.redbubble.net/image.392413794.3911/flat,800x800,075,f.jpg",src:songfile3}];
 var songIndex = 0;
 
 class Controls extends React.Component{
@@ -35,7 +35,7 @@ class Controls extends React.Component{
   render(){
     return(<div>
 	  <div background={this.state.img} className="albumArtwork">
-    <div className="imageborder"><img src={require('./Rezz.jpg')} /></div>
+    <div className="imageborder"><img src={this.state.image} /></div>
 	  <h2 id="songTitle">{this.state.trackname}</h2>
 	  <h3 id="artist">{this.state.artist}</h3>
 	  </div>
