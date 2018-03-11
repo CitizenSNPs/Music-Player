@@ -4,7 +4,6 @@ import "./index.css";
 import songfile1 from "./Relax.mp3";
 import songfile2 from "./Reckoner.mp3";
 import songfile3 from "./Imaginary Parties.mp3"
-import Rezz from "./Rezz.jpg";
 
 const songinfo = [{trackname:"Relax", artist:"Rezz", image:"http://www.youredm.com/wp-content/uploads/2017/06/rezz-face-first-rukes-1024x683.jpg",src:songfile1},
 		{trackname:"Reckoner", artist:"Radiohead", image:"http://diymag.com/media/img/General/Hall-of-Fame/_1500x1000_crop_center-center_75/tumblr_m8yak1u0a41qj3af5o1_1280.jpg",src:songfile2},
@@ -20,7 +19,9 @@ class Controls extends React.Component{
                   {song:songfile2, playing:false, image:""}];
 
     this.state = {trackname: songinfo[songIndex].trackname, artist: songinfo[songIndex].artist,
-		song:songinfo[songIndex].src, playing:false, image:"./Rezz.jpg"};
+		song:songinfo[songIndex].src, playing:false, image:songinfo[songIndex].image};
+
+
 
     this.audio = document.querySelector("audio");
 
@@ -29,6 +30,7 @@ class Controls extends React.Component{
     this.playSong = this.playSong.bind(this);
     this.changeSong = this.changeSong.bind(this);
 		this.songBack = this.songBack.bind(this);
+		//this.songSelect = this.songSelect.bind(this);
 
   };
 
@@ -41,8 +43,15 @@ class Controls extends React.Component{
 	  </div>
           <audio type="audio.mpeg" src= {this.state.song} ref="audio"/>
           <button onClick={this.songBack}>Back</button>
-          <button onClick={this.playSong}>Play</button>
+          <button onClick={this.playSong}>Play/Pause</button>
           <button onClick={this.changeSong}>Forward</button>
+					<select>
+						<option selected disabled hidden>Song Selection</option>
+						<option value="1">{songinfo[0].trackname} - {songinfo[0].artist}</option>
+						<option value="2">{songinfo[1].trackname} - {songinfo[1].artist}</option>
+						<option value="3">{songinfo[2].trackname} - {songinfo[2].artist}</option>
+
+					</select>
           </div>);
   };
 
@@ -66,6 +75,8 @@ class Controls extends React.Component{
 					this.refs.audio.pause();
 					this.refs.audio.load();
 					this.refs.audio.play();
+
+					console.log(this.state);
 				});
       };
 
@@ -80,7 +91,17 @@ class Controls extends React.Component{
 					this.refs.audio.play();
 		});
 
-	};
+		};
+
+		/*songSelect(){
+			this.audio = document.querySelector("audio");
+			var key = this.props.value;
+			songIndex = Number(key);
+			song: songinfo[songIndex].src, image: songinfo[songIndex].image, trackname: songinfo[songIndex].trackname, artist: songinfo[songIndex].artist}, function(){
+				this.refs.audio.pause();
+				this.refs.audio.load();
+				this.refs.audio.play();
+		}; */
 };
 
 const App = () => {
