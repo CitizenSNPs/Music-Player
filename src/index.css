@@ -1,28 +1,101 @@
-.button{
-  height: 500px;
-  width: 500px;
-  background-color: red;
-  border-radius: 50%;
-  cursor: pointer;
-  position: relative;
-  left: 25%;
-  top: 12.5%;
-  border: none;
-}
-
 img {
  -webkit-filter: blur(5px);
  -moz-filter: blur(5px);
  -o-filter: blur(5px);
  -ms-filter: blur(5px);
- filter: blur();
- width: 500px;
- height: 500px;
- border: solid black 10px;
-};
+ filter: saturate(30%);
+ width: 275px;
+ height: 275px;
+ border: solid white 10px;
+ border-radius: 50%;
+ position: absolute;
+ left:15%;
+ top: 15%;
+ box-shadow: 0px 2px 20px lightgrey;
+
+}
 
 .imageborder{
-  border: solid red 10px;
-  height:800px;
-  width:800px;
+  border: solid lightgray 1.5px;
+  height:600px;
+  width:400px;
+  position: relative;
+  margin: auto;
+  box-shadow: 0px 2px 20px lightgrey;
+  text-align:center;
+}
+
+h2{
+  font-size: 16pt;
+  font-weight:lighter;
+  font-family: Helvetica;
+  color: black;
+  position: absolute;
+  top: 65%;
+  left: 45%;
+  text-align: center;
+  align: justify;
+}
+
+h3{
+  font-weight:lighter;
+  font-family: Helvetica;
+  font-size: 15pt;
+  color: darkgrey;
+  position: absolute;
+  top: 70%;
+  left: 45%;
+  text-align: center;
+}
+
+button#play{
+  background: no-repeat url(https://d30y9cdsu7xlg0.cloudfront.net/png/121444-200.png);
+  background-size: 100%;
+  background-repeat: none;
+  background-position: center;
+  height: 70px;
+  width: 70px;
+  border: none;
+  cursor: pointer;
+}
+
+button#forward{
+  background: no-repeat url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Forward_font_awesome.svg/1200px-Forward_font_awesome.svg.png);
+  background-size: 60%;
+  background-repeat: none;
+  background-position: center;
+  height: 70px;
+  width: 70px;
+  border: none;
+  position: absolute;
+  cursor:pointer;
+}
+
+button#back{
+  background: no-repeat url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Forward_font_awesome.svg/1200px-Forward_font_awesome.svg.png);
+  background-size: 60%;
+  background-repeat: none;
+  background-position: center;
+  height: 70px;
+  width: 70px;
+  border: none;
+  transform: rotate(180deg);
+  cursor:pointer;
+}
+
+#buttons{
+  position: absolute;
+  top: 85%;
+  left: 25%;
+}
+
+input#range{
+  position: absolute;
+  top: 80%;
+  left: 15%;
+  width: 70%;
+}
+
+#info{
+  text-align: center;
 }
