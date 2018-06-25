@@ -9,11 +9,12 @@ class HttpService {
     .then(response => {
       resolve(response.json());
       reject("oh no!");
-    });
+    })
 
-    return promise
 
-  }
+  });
+  return promise
+}
 }
 
 export default HttpService;
