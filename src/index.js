@@ -10,8 +10,9 @@ class Controls extends React.Component{
   constructor(props){
     super(props);
 		this.loadData();
-    this.state = {songIndex:0};
-    this.songSources = ['./MP3/Reckoner.mp3', './MP3/ImaginaryParties.mp3'];
+    console.log("Updated.");
+    this.state = {songIndex:0, playing: false, titles: [{artist: "RadioHead", name: "Reckoner", pic:require("./pics/Radiohead.jpg")},
+                                        {artist:"Unknown", name:"Imaginary Parties", pic:require("./pics/Rezz.jpg")}]}
 
     this.loadData = this.loadData.bind(this);
     this.playSong = this.playSong.bind(this);
@@ -37,8 +38,13 @@ class Controls extends React.Component{
     let audio = songList[this.state.songIndex];
     var audio2 = document.querySelector('audio');
     audio2.src = (audio);
-    audio2.id="myAudio";
-    audio2.play();
+    if (this.state.playing == true){
+      audio2.pause();
+      this.setState({playing: false});
+    }else{
+        audio2.play();
+        this.setState({playing:true});
+      }
     });
   }
 
@@ -52,30 +58,37 @@ class Controls extends React.Component{
   // }
 
   nextSong(){
+    if (this.state.songIndex === this.state.titles.length-1){
+      return;
+    }
     let newIndex = this.state.songIndex + 1;
     this.setState({songIndex: newIndex}, function(){
     let audio = document.querySelector('audio');
     audio.pause();
     audio.src = songList[this.state.songIndex];
-    console.log(document.querySelector('audio'));
     audio.play();
     });
   }
 
   prevSong(){
+    if (this.state.songIndex === 0){
+      return;
+    }
     let newIndex = this.state.songIndex - 1;
     this.setState({songIndex: newIndex}, function(){
     let audio = document.querySelector('audio');
     audio.pause();
     audio.src = songList[this.state.songIndex];
-    console.log(document.querySelector('audio'));
     audio.play();
-    });
+  });
   }
 
   render(){
     return (
       <div>
+      <img src={this.state.titles[this.state.songIndex].pic} />
+      <h2>{this.state.titles[this.state.songIndex].name}</h2>
+      <h3>{this.state.titles[this.state.songIndex].artist}</h3>
       <audio src="" />
       <button onClick={this.prevSong}>Prev Song</button>
       <button onClick={this.playSong}>Play Song</button>
