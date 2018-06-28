@@ -1,22 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import Controls from "./Controls.js";
 
-const test = [0,1,2,3];
+const songList = [require('./MP3/Reckoner.mp3'), require('./MP3/ImaginaryParties.mp3')];
+const titles = ["Reckoner", "Unknown","BonJovi","Kazoo"];
 
 class Sidebar extends React.Component{
   constructor(props){
     super(props);
 
-
+    this.state = {songIndex: 0};
     this.createList = this.createList.bind(this);
+    this.setState = this.setState.bind(this);
   }
 
 
   render(){
     return(<div id="name">
-      <ul id="books">
-      <li>hello</li>
+      <ul id="songs">
       </ul>
+      <Controls songIndex={this.state.songIndex} />
       </div>
     );
   }
@@ -28,18 +31,32 @@ class Sidebar extends React.Component{
   }
 
   createList() {
-    console.log(this.props);
 
-    var songTitles = this.props.titles;
+    var songTitles = titles;
 
     var html = "";
-    for (var i =0; i < songTitles.length; i++) {
-        html += "<li>" + songTitles[i]+ "</li>";
+    for (let i =0; i < songTitles.length; i++) {
+        html += `<li id=${i}>` + songTitles[i]+ "</li>";
     }
-    document.getElementById("books").innerHTML = html;
-    console.log(html);
+    document.getElementById("songs").innerHTML = html;
+    var lists = document.querySelectorAll('li');
+
+    for (let i=0; i<lists.length; i++){
+    lists[i].addEventListener("click", ()=> {  //must use ES6 function, not ES5
+
+    this.setState({songIndex:i}, function(){
+      let audio = document.querySelector('audio');
+      audio.pause()
+      audio.src = songList[this.state.songIndex];
+      audio.play();
+    });
+  });
+}
+
+
 
 }
 }
+
 
 export default Sidebar;
