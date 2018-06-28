@@ -2,17 +2,31 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import HttpService from './services/service';
+import Sidebar from './Sidebar.js';
 
 const http = new HttpService();
 const songList = [require('./MP3/Reckoner.mp3'), require('./MP3/ImaginaryParties.mp3')];
+const titles = ["Reckoner", "Unknown","BonJovi","Kazoo"];
 
 class Controls extends React.Component{
   constructor(props){
     super(props);
 		this.loadData();
-    console.log("Updated.");
     this.state = {songIndex:0, playing: false, titles: [{artist: "RadioHead", name: "Reckoner", pic:require("./pics/Radiohead.jpg")},
-                                        {artist:"Unknown", name:"Imaginary Parties", pic:require("./pics/Rezz.jpg")}]}
+                                        {artist:"Unknown", name:"Imaginary Parties", pic:require("./pics/Rezz.jpg")}], songInfo:titles}
+
+    this.titles = function(){
+      var list = [];
+      for(var i=0;i<this.state.titles.length; i++){
+        list.push(this.state.titles[i].name);
+      }
+
+      return list;
+    }
+
+    console.log(this.state.songInfo);
+
+
 
     this.loadData = this.loadData.bind(this);
     this.playSong = this.playSong.bind(this);
@@ -93,6 +107,7 @@ class Controls extends React.Component{
       <button onClick={this.prevSong}>Prev Song</button>
       <button onClick={this.playSong}>Play Song</button>
       <button onClick={this.nextSong}>Next Song</button>
+      <Sidebar titles={this.state.songInfo} />
       </div>
   )
   }
