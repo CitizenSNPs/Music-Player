@@ -1,101 +1,110 @@
-img {
- -webkit-filter: blur(5px);
- -moz-filter: blur(5px);
- -o-filter: blur(5px);
- -ms-filter: blur(5px);
- filter: saturate(30%);
- width: 275px;
- height: 275px;
- border: solid white 10px;
- border-radius: 50%;
- position: absolute;
- left:15%;
- top: 15%;
- box-shadow: 0px 2px 20px lightgrey;
-
+body{
+  height: 100%;
 }
-
-.imageborder{
-  border: solid lightgray 1.5px;
-  height:600px;
-  width:400px;
+#background{
   position: relative;
-  margin: auto;
-  box-shadow: 0px 2px 20px lightgrey;
-  text-align:center;
+  z-index:-1;
+  background-color: #0BD3B7;
+  background-repeat: no-repeat;
+background-size:cover;
+height: 100%;
 }
 
-h2{
-  font-size: 16pt;
-  font-weight:lighter;
-  font-family: Helvetica;
-  color: black;
+#name{
   position: absolute;
-  top: 65%;
-  left: 45%;
-  text-align: center;
-  align: justify;
+  height: 100%;
+  width: 100%;
+  z-index: -1000;
+}
+#backImage{
+  filter: blur(20px) saturate(.8);
+  position: absolute;
+  z-index: -1000;
+  height: 100vh;
+  width: 100vw;
+  border: solid black 50px;
+}
+
+#app{
+  position: relative;
+  background-color: #1f1f1f;
+  height: 90%;
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  box-shadow: gray 0px 5px 12px 3px;
+  z-index: -2;
+}
+
+h3, h2{
+  color: white;
+  font-size: 11pt;
+  font-family: Helvetica;
+  font-weight: 100;
+  margin: 2px;
 }
 
 h3{
-  font-weight:lighter;
-  font-family: Helvetica;
-  font-size: 15pt;
-  color: darkgrey;
+  color: gray;
+  font-size: 10pt;
+}
+
+#titles{
+  z-index: 1000;
+  margin-left: auto;
+}
+
+#mainImage{
   position: absolute;
+  height: 50%;
+  width: 90%;;
+  z-index: -1;
+  padding: 10px;
+  filter: saturate(0.7);
+
+}
+
+ul{
+  position: absolute;
+}
+
+#titles{
+  text-align: center;
+  position: absolute;
+  text-align: center;
+  left: 35%;
+  top: 60%;
+  z-index: 2000;
+}
+
+#controls{
+  position: absolute;
+  left: 16%;
   top: 70%;
-  left: 45%;
-  text-align: center;
 }
 
-button#play{
-  background: no-repeat url(https://d30y9cdsu7xlg0.cloudfront.net/png/121444-200.png);
-  background-size: 100%;
-  background-repeat: none;
-  background-position: center;
-  height: 70px;
-  width: 70px;
-  border: none;
-  cursor: pointer;
+li{
+  border: solid black 2px;
+  background-color: gray;
+  text-decoration: none;
 }
 
-button#forward{
-  background: no-repeat url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Forward_font_awesome.svg/1200px-Forward_font_awesome.svg.png);
-  background-size: 60%;
-  background-repeat: none;
-  background-position: center;
-  height: 70px;
-  width: 70px;
-  border: none;
+ul {
   position: absolute;
-  cursor:pointer;
+  left: 70%;
+  top: 50%;
+  list-style-type: none;
+
 }
 
-button#back{
-  background: no-repeat url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Forward_font_awesome.svg/1200px-Forward_font_awesome.svg.png);
-  background-size: 60%;
-  background-repeat: none;
-  background-position: center;
-  height: 70px;
-  width: 70px;
-  border: none;
-  transform: rotate(180deg);
-  cursor:pointer;
-}
-
-#buttons{
+#audio-canvas{
   position: absolute;
-  top: 85%;
-  left: 25%;
+  top: 118px;
+  left: 10px;
 }
 
-input#range{
-  position: absolute;
-  top: 80%;
-  left: 15%;
-  width: 70%;
-}
 
-#info{
-  text-align: center;
+.functions{
+  margin: 2px;
 }
