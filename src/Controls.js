@@ -2,6 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import HttpService from './services/service';
+import FaPlayCircle from 'react-icons/lib/fa/play-circle';
+import FaPauseCircle from 'react-icons/lib/fa/pause-circle';
+import FaFastForward from 'react-icons/lib/fa/fast-forward';
+import FaFastBackward from 'react-icons/lib/fa/fast-backward';
+import AudioSpectrum from 'react-audio-spectrum';
+import { FormattedTime, ProgressBar, TimeMarker } from 'react-player-controls'
+// import Visualizer from 'react-audio-visualizer';
+
 
 const http = new HttpService();
 const songList = [require('./MP3/Reckoner.mp3'), require('./MP3/ImaginaryParties.mp3')];
@@ -32,6 +40,7 @@ class Controls extends React.Component{
     // this.addSong = this.addSong.bind(this);
     this.nextSong = this.nextSong.bind(this);
     this.prevSong = this.prevSong.bind(this);
+
   }
 
   loadData = () => {
@@ -70,6 +79,7 @@ class Controls extends React.Component{
   //   console.log(this.songSources);
   // }
 
+
   nextSong(){
     if (this.state.songIndex === this.state.titles.length-1){
       return;
@@ -104,14 +114,41 @@ class Controls extends React.Component{
 
   render(){
     return (
-      <div>
-      <img src={this.state.titles[this.state.songIndex].pic} />
+      <div id="background" /*style={{backgroundImage: `url(${this.state.titles[this.state.songIndex].pic})`}}*/>
+      <div id="app">
+      <div id="controls">
+      <FaFastBackward size={40} color="white" class="functions"onClick={this.prevSong} />
+      <FaPlayCircle class="functions" size={40} color="white" onClick={this.playSong} />
+      <FaPauseCircle class="functions" size={40} color="white"/>
+      <FaFastForward class="functions" size={40} color="white" onClick={this.nextSong}/>
+      </div>
+      <div id="images">
+      <img id="mainImage" src={this.state.titles[this.state.songIndex].pic} />
+      <AudioSpectrum
+        id="audio-canvas"
+        height={100}
+        width={228}
+        audioId={'audio-element'}
+        capColor={'transparent'}
+        capHeight={2}
+        meterWidth={10}
+        meterCount={512}
+        meterColor={[
+          {stop: 0, color: 'rgba(255,250,250,0.5)'},
+          {stop: 0.5, color: 'white'},
+          {stop: 1, color: 'red'}
+        ]}
+        gap={4}
+      />
+      </div>
+
+      <div id="titles">
       <h2>{this.state.titles[this.state.songIndex].name}</h2>
       <h3>{this.state.titles[this.state.songIndex].artist}</h3>
-      <audio src="" />
-      <button onClick={this.prevSong}>Prev Song</button>
-      <button onClick={this.playSong}>Play Song</button>
-      <button onClick={this.nextSong}>Next Song</button>
+      </div>
+      <audio id="audio-element" autoPlay src="" />
+
+      </div>
       </div>
   )
   }
