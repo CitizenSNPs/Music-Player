@@ -1,9 +1,12 @@
-body{
+body, html{
+  position: relative;
   height: 100%;
+  background-color: #0BD3B7;
+  z-index: 0;
 }
 #background{
   position: relative;
-  z-index:-1;
+  z-index:-1000;
   background-color: #0BD3B7;
   background-repeat: no-repeat;
 background-size:cover;
@@ -27,6 +30,7 @@ height: 100%;
 
 #app{
   position: relative;
+  top: 5%;
   background-color: #1f1f1f;
   height: 90%;
   width: 25%;
@@ -34,20 +38,29 @@ height: 100%;
   margin-right: auto;
   border-radius: 5px;
   box-shadow: gray 0px 5px 12px 3px;
-  z-index: -2;
+  z-index: 3;
+}
+
+#top{
+  border-radius: 3px 3px 0px 0px;
+  background-color: white;
+  width: 100%;
+  height: 23%;
 }
 
 h3, h2{
-  color: white;
-  font-size: 11pt;
+  color: black;
+  font-size: 7pt;
   font-family: Helvetica;
   font-weight: 100;
   margin: 2px;
 }
 
+h2{
+  font-weight: 600;
+}
 h3{
   color: gray;
-  font-size: 10pt;
 }
 
 #titles{
@@ -57,54 +70,86 @@ h3{
 
 #mainImage{
   position: absolute;
-  height: 50%;
-  width: 90%;;
-  z-index: -1;
+  height: 15%;
+  width: 25%;;
+  z-index: 1;
   padding: 10px;
   filter: saturate(0.7);
 
 }
 
-ul{
-  position: absolute;
-}
 
 #titles{
   text-align: center;
   position: absolute;
-  text-align: center;
-  left: 35%;
-  top: 60%;
+  text-align: left;
+  left: 30%;
+  top: 3%;
   z-index: 2000;
 }
 
 #controls{
   position: absolute;
-  left: 16%;
-  top: 70%;
+  left: 30%;
+  top: 90%;
 }
 
 li{
-  border: solid black 2px;
-  background-color: gray;
-  text-decoration: none;
+  margin-top: 4px;
+  background-color: rgb(55,52,52);
+  width: 95%;
+  height: 8%;
+  color: white;
+  font-family: Helvetica;
+  font-size: 8pt;
+  margin-left: 0px;
+  padding: 5px;
 }
+
+
 
 ul {
   position: absolute;
-  left: 70%;
-  top: 50%;
+  text-align: left;
+  width: 22%;
+  height: 50%;
+  left: 35.5%;
+  top: 27%;
   list-style-type: none;
+  background-color: transparent;
+  z-index: -4;
+  overflow-y: scroll;
+  overflow-x: hidden;
 
 }
 
 #audio-canvas{
   position: absolute;
-  top: 118px;
+  top: 73.5px;
   left: 10px;
 }
 
 
 .functions{
   margin: 2px;
+}
+
+#pause.functions{
+  position: absolute;
+  right:33%;
+  display: none;
+}
+
+
+ul::-webkit-scrollbar {
+    width: .5em;
+}
+
+ul::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+ul::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid #1f1f1f;
 }
